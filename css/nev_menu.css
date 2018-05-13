@@ -1,0 +1,76 @@
+#nav a:hover,#nav li:hover > a 
+{
+	color:#38ef0d;
+
+}
+#nav,#nav ul {
+	
+	list-style:none;
+	margin:0;
+	padding:0;
+	position:relative;
+}
+#nav {
+    background:transparent;
+	height:30px;
+	left:0;	
+	top:2%;
+        color:#99ff33;
+}
+#nav li {
+	float:left;
+	position:relative;
+	z-index:10;
+}
+#nav li a
+{
+        /*height:5%;*/
+        background-color: rgba(255, 255, 255, 0.15);        
+        border-radius:20px; /*some css3*/
+	color:#fff;
+	float:left;
+	
+	line-height:40px;
+	padding:0 10px;
+	position:relative;
+	text-decoration:none;
+	z-index:20;
+}
+#nav li ul li:first-child a {	
+	padding-left:10px;
+}
+#nav li.pad {
+	height:51px;
+	width:35px;
+}
+#nav ul {
+background:transparent;
+	height:auto;
+	padding:10px 0;
+	position:absolute;
+	top:-115px;
+	width:180px;
+	z-index:1;
+	border-radius:20px; /*some css3*/
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	transition:0.8s ease-in-out;
+	box-shadow:2px 2px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:2px 2px 3px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow:2px 2px 3px rgba(0, 0, 0, 0.5);
+	-moz-transition:0.8s ease-in-out;
+	-o-transition:0.8s ease-in-out;
+	-webkit-transition:all 0.8s ease-in-out;
+}
+#nav ul li a 
+{
+	background:transparent;
+	height:20px;
+	line-height:20px;
+	width:160px;
+}
+#nav li:hover ul {
+	-moz-transform:translate(0,151px); /*some css3*/
+	-o-transform:translate(0,151px);
+	-webkit-transform:translate(0,151px);
+}

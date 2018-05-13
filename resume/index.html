@@ -1,0 +1,349 @@
+<html>
+    <head>
+        <title>Chempukutti Resume</title>
+        <link href="reset-fonts-grids.css" rel="stylesheet" type="text/css"/>	
+        <link rel="stylesheet" type="text/css" href="resume.css" media="all" />                
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+        <script type="text/javascript" src="//cdn.rawgit.com/MrRio/jsPDF/master/dist/jspdf.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+
+        <style>
+            a
+            {
+                text-decoration: none;                
+            }
+            a:hover
+            {
+                text-decoration: underline;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .img
+            {
+                height: 4%;
+                width: 3%;                         
+                border-radius: 1.5%;
+                background-size: 100% 100%;
+                float:left;
+            }
+            .img_1  
+            {
+                height: 4%;
+                width: 3%;                                                     
+                border-radius: 1.5%;
+                   background-size: 100% 100%;
+                float:right;
+            }
+
+            @media print
+            {    
+                .no-print, .no-print *
+                {
+                    display: none !important;
+                }
+            }            
+
+            @media print and (width: 21cm) and (height: 29.7cm) {
+                @page {
+                    margin: 0.5cm; 
+                }
+            }
+            /*
+            @media print
+            {    
+                size:a4;
+                margin:2px;
+            } */           
+
+        </style>
+        <script type="text/javascript">
+            function printpage() {
+                //Get the print button and put it into a variable
+                //var printButton = document.getElementById("printpagebutton");
+                window.print();
+                //Set the print button to 'visible' again 
+                //[Delete this line if you want it to stay hidden after printing]
+                //printButton.style.visibility = 'visible';
+            }
+        </script>
+    </head>  
+
+    <body>                                                
+        <div class="no-print"><br><br></div>
+        <div id="doc2" class="yui-t7">            
+            <div class="no-print" id="mydiv">&nbsp;
+                <!--<div class="img_1">
+                    <a  target="_blank" style="float:left;"  onclick="printpage();" href="">
+                        <img src="icons/download.png"/>
+                    </a>
+                </div>-->
+                <div class="img_1">
+                    <a  onclick="printpage();" href="" >
+                        <img src="icons/pdf.png"/>
+                    </a>
+                </div>
+                <div class="img">
+                    <a  target="_blank"  href="https://www.facebook.com/eskutti">
+                        <img src="icons/facebook.png"/>
+                    </a>
+                </div>
+                <div class="img">
+                    <a target="_blank" href="https://twitter.com/eskutti">
+                        <img src="icons/tweet.png"/>
+                    </a>
+                </div>
+                <div class="img">
+                    <a target="_blank"  href="https://plus.google.com/115809185974833911764">
+                        <img src="icons/g+.png"/>
+                    </a>
+                </div>
+                <div class="img">
+                    <a  target="_blank"  href="https://www.github.com/eskutti">
+                        <img src="icons/github.png"/>
+                    </a>
+                </div>
+
+                <div class="img">
+                    <a target="_blank" href="https://www.linkedin.com/in/eskutti/" >
+                        <img src="icons/linkedin.PNG"/>
+                    </a>
+                </div>
+                <div class="img">        
+                    <a target="_blank" href="http://stackoverflow.com/users/6815543/chempukutti?tab=profile">
+                        <img src="icons/stock.png"/>
+                    </a>
+                </div>
+
+            </div>
+            <form class="ui form">
+                <div id="inner">
+                    <div id="hd" ><h2 style="text-align: center;font-size: 25px;"> CURRICULAM VITAE </h2></div>
+                    <div id="hd">
+                        <div class="yui-gc">
+                            <div class="yui-u first">
+                                <h2 style="font-size: 25px;">Chempukutti .E</h2>
+                                <h3>Software Developer(Fresher)</h3>
+                            </div>
+                            <div class="yui-u">
+                                <div class="contact-info">
+                                    <h3><a href="mailto:echempu.kutti@gmail.com">echempu.kutti@gmail.com</a></h3>
+                                    <h3>(+91) - 801-271-3034</h3>
+                                </div><!--// .contact-info -->
+                            </div>
+                        </div><!--// .yui-gc -->
+                    </div><!--// hd -->
+                    <div id="bd">
+                        <div id="yui-main">
+                            <div class="yui-b">
+
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Objective</h2>
+                                    </div>
+                                    <div class="yui-u">                                        
+                                        <h2 style="text-align:justify;">
+                                            <!--To learn and function effectively in an organization that promotes initiative, accountability and integrity. To constantly upgrade my knowledge and skills and make a difference in whatever I do.								-->
+                                            To work for an organization which provides me the opportunity to improve my skills and knowledge to growth along with the organization objective.
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Profile </h2>
+                                    </div>                                    
+                                            <div class="yui-u">  
+                                                <h2 style="text-align:justify;">
+                                        Eager to learn new technologies and methodologies.                                         
+                                        Always willing to innovate the new things which can improve the existing technology.
+                                                </h2>
+                                        
+                                    </div>                                                                                                                     
+                                </div>
+                                <!--// .yui-gf -->
+                                <!--
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Profile</h2>
+                                    </div>
+                                    <div class="yui-u">
+                                        <p class="enlarge">
+                                            Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
+                                        </p>
+                                    </div>
+                                </div>
+                                -->
+                                <!--// .yui-gf -->
+
+                                <!--
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Skills</h2>
+                                    </div>
+                                    <div class="yui-u">
+    
+                                        <div class="talent">
+                                            <h2>Web Design</h2>
+                                            <p>Assertively exploit wireless initiatives rather than synergistic core competencies.	</p>
+                                        </div>
+    
+                                        <div class="talent">
+                                            <h2>Interface Design</h2>
+                                            <p>Credibly streamline mission-critical value with multifunctional functionalities.	 </p>
+                                        </div>
+    
+                                        <div class="talent">
+                                            <h2>Project Direction</h2>
+                                            <p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
+                                <!--// .yui-gf -->
+
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Technical</h2>
+                                    </div>
+                                    <div class="yui-u">
+                                        <ul class="talent">
+                                            <li>HTML</li>
+                                            <li>CSS</li>
+                                            <li >Javascript</li>
+                                            <li class="last">Mysql</li>
+
+                                        </ul>
+
+                                        <ul class="talent">
+                                            <li>Golang (Basic)</li>							
+                                            <li>Bootstrap</li>								
+                                            <li >Jquery</li>                                        
+                                            <li class="last">SQL-Server</li>
+
+                                        </ul>
+
+                                        <ul class="talent">                                        
+                                            <li>C#.Net</li>
+                                            <li>JAVA</li>
+                                            <li>Android</li>								
+                                            <li class="last">PHP (Basic) </li>
+                                        </ul>
+                                    </div>
+                                </div><!--// .yui-gf-->
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Projects</h2>
+                                    </div><!--// .yui-u -->
+
+                                    <div class="yui-u">
+
+                                        <div class="job">
+                                            <h3>Academic Mini Project - I Multi Billing System</h3>
+                                            <h5>Windows Application in C#.net with MSaccess database</h5>
+                                            <h4>July-15 to Sep-15</h4>
+                                            <!--<p></p>-->
+                                        </div>
+
+                                        <div class="job">
+                                            <h3>Student ID-Card Generating Application for <b> my College</b></h3>
+                                            <h5>Windows Application in C#.net with MSSQL and MYSQL database</h5>
+                                            <h4>Jan-16 to Apr-16</h4>
+                                            <!--<p></p>-->
+                                        </div>
+                                        <div class="job">
+                                            <h3>Transfer Certificate Generating Application for<b> my College</b> </h3>
+                                            <h5>Windows Application in C#.net with MSaccess database</h5>
+                                            <h4>Jan-16 to Apr-16</h4>                                            
+                                        </div>
+
+                                        <div class="job">
+                                            <h3>MYSXC Android App</h3>
+                                            <h5>Android with PHP & Mysql</h5>
+                                            <h4>June-16 to Sep-16</h4>
+                                            <!--<h6 style="padding-top:0.5em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  In this application can be used to students can able to view their semester result and also attendance information on every day</h6>
+                                            <p></p>-->
+                                        </div>
+                                        <div class="job last">
+                                            <h3>Online SXC Portal</h3>
+                                            <h5>PHP & Mysql</h5>
+                                            <h4>June-16 to Sep-16</h4>
+                                            <!--<p></p>-->
+                                        </div>
+                                    </div><!--// .yui-u -->
+                                </div><!--// .yui-gf -->
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Education</h2>
+                                    </div>
+                                    <div class="yui-u">
+                                        <h2>MS Univerisity,Tirunelveli</h2>
+                                        <h3>Master Of Computer Application &mdash; <strong1>73%(upto 5th sem)</strong1> </h3>
+                                        <h5>Doing at St.Xaviers College, Tirunelveli.  </h5>                                        
+                                    </div>                                                                                 
+                                    <!--
+                                    <div class="yui-u">
+                                        <h2>MS Univerisity,Tirunelveli</h2>
+                                        <h3>B.Com with Computer Application &mdash; <strong>71%</strong> </h3>
+                                        <h5>Competed at St.Xaviers College,Palayamkottai.</h5>
+                                    </div>                                            
+                                    -->
+                                </div><!--// .yui-gf -->                               
+                                <div class="yui-gf ">
+                                    <div class="yui-u first">
+                                        <h2>Hobbies</h2>
+                                    </div>
+                                    <div class="yui-u">  
+                                        <h3>Coin Collecting</h3>
+                                        <h5>Different Indian coins</h5>
+                                        <hr>
+                                    </div>                                             
+                                    <div class="yui-u">                                    
+                                        <h3>Learning New Technologies  </h3>
+                                        <h5>Learn new Programs,surfing relating to current Trends in IT</h5>
+                                    </div>                                                                            
+                                </div>
+
+
+                                <div class="yui-gf">
+                                    <div class="yui-u first">
+                                        <h2>Personal</h2>
+                                    </div>
+                                    <div class="yui-u">
+                                        <ul class="talent">
+                                            <li class="last">NAME</li>                                                                           
+                                            <li class="last">DOB</li>
+                                            <li class="last">GENDER</li>
+                                            <li class="last">LANGUAGES KNOWN</li> 
+                                            <li class="last">AREA OF INTEREST</li>
+                                        </ul>
+                                        <ul class="talent">
+
+                                            <li class="last">&nbsp; </li>
+                                        </ul>
+                                        <ul class="talent">
+                                            <li class="last">Chempukutti</li>								                                                                            
+                                            <li class="last">05-apr-1994</li>								
+                                            <li class="last">Male</li>								                                                                            
+                                            <li class="last">Tamil & English</li>								
+                                            <b><li class="last">Android</li></b>
+                                        </ul>
+                                    </div>
+                                </div><!--// .yui-gf-->
+                            </div><!--// .yui-b -->
+                        </div><!--// yui-main -->
+                    </div><!--// bd -->
+                    <div id="ft">
+                        <p>ChempuKutti. E&mdash; <a href="mailto:echempu.kutti@gmail.com"> echempu.kutti@gmail.com </a> &mdash; (+91) - 801-271-3034</p>
+                    </div><!--// footer -->
+                </div><!-- // inner -->
+            </form>
+        </div><!--// doc -->
+
+
+    </body>
+</html>
+

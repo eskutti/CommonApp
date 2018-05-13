@@ -1,0 +1,233 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 3, 2016, 8:47:15 PM
+    Author     : KUTTI
+*/
+
+.trans
+{    
+    background:transparent;
+}
+.shadow
+{ 
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.4);   
+}
+#modal_cat{
+    background-color: rgba(255, 255, 255, 0.5);  
+}
+.popover
+{
+    color:white !important;
+    background-color: black;
+}
+.form-control
+{
+    border-radius: 10px;
+    background: transparent;
+    color:#555 !important
+}
+
+body,.myback,.modal-content
+{
+    background-color:#cccccc ;             
+    background: fixed no-repeat;
+    background-size: 100%;
+    /*    background-image:url(../images/1.jpg);*/
+    overflow: visible !important;
+    background: -webkit-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -moz-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -ms-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -o-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+}   
+select >option
+{
+    color:black;
+}
+input,select
+{
+    color:whitesmoke !important;
+}
+:-moz-placeholder,::-moz-placeholder,:-ms-input-placeholder,::-webkit-input-placeholder
+{   
+    color: white !important;
+    opacity: 1 !important;
+} 
+.inner-addon 
+{
+    position: relative;
+}
+/* style icon */
+.inner-addon .glyphicon
+{
+    position: absolute;
+    padding:10px;
+    pointer-events: none;
+}/* align icon */
+.left-addon .glyphicon,.left-addon .fa
+{
+    left:5px;
+}
+.right-addon .glyphicon,.right-addon .fa
+{
+    right:5px;
+}/* add padding  */
+.left-addon input 
+{
+    padding-left:30px;
+}
+.right-addon input 
+{
+    padding-right:30px;
+}            
+.inner-addon .fa
+{
+    position: absolute;
+    padding:10px;
+    pointer-events: none;
+}/* align icon */
+
+
+::-webkit-scrollbar {
+    width: 10px; /* for vertical scrollbars */
+    height: 10px; /* for horizontal scrollbars */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    background-color: #000;
+    border-radius: 10px;
+    background-color:#11151c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-color: #FFF;
+    background: -webkit-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -moz-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -ms-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: -o-linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+    background: linear-gradient(45deg, #085078 10%, #85d8ce 90%);
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    border: 16px solid #15af58;
+    border-radius: 50%;
+    border-top: 16px solid #1d6001;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.loader_out {
+    position: fixed;
+    background: transparent;
+    background-color: rgba(19,25,37,0.8);
+    z-index: 2147483647 !important;
+    opacity: 0.8;
+    overflow: hidden;
+    text-align: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: 20%;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.col-md-12,.col-md-11,.col-md-10,.col-md-9,.col-md-8.col-md-7.col-md-6
+,.col-md-5,.col-md-4,.col-md-3,.col-md-2,.col-md-1,.widget-content,.myback{
+    padding:10px;
+}
+.panel-heading{
+    color: #fff !important;
+    background-color: transparent !important;
+    border-color: #6cbdbd !important;
+}
+
+/*Begin Circle Button*/
+
+body{margin:40px;}
+
+
+.btn-circle {
+  width: 30px !important;
+  height: 30px !important;
+  text-align: center !important;
+  padding: 6px 0 !important;
+  font-size: 12px !important;
+  line-height: 1.428571429 !important;
+  border-radius: 15px !important;
+}
+.btn-circle.btn-lg {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 10px 16px !important;
+  font-size: 18px !important;
+  line-height: 1.33 !important;
+  border-radius: 25px !important;
+}
+.btn-circle.btn-xl {
+  width: 70px !important;
+  height: 70px !important;
+  padding: 10px 16px !important;
+  font-size: 24px !important;
+  line-height: 1.33 !important;
+  border-radius: 35px !important;
+}
+
+
+/*End circle Button*/
+
+.text-overflow {
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.grid-img-data {
+    height: 30px;
+    width: 30px;
+}
+.width-25{
+    width:25%;
+}
+.width-70{
+    width:70%;
+}
+
+td > textarea.form-control {
+    min-height: 34px !important;
+   height:0 !important
+}
