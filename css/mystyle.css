@@ -182,12 +182,12 @@ body{margin:40px;}
 
 
 .btn-circle {
-  width: 30px !important;
-  height: 30px !important;
+  width: 25px !important;
+  height: 25px !important;
   text-align: center !important;
   padding: 6px 0 !important;
   font-size: 12px !important;
-  line-height: 1.428571429 !important;
+  line-height: 0.5 !important;
   border-radius: 15px !important;
 }
 .btn-circle.btn-lg {
@@ -233,4 +233,7 @@ td > textarea.form-control {
 }
 body{
     color:#fff!important;
+}
+.highlight{
+    background: green;
 }
