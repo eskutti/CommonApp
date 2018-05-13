@@ -9,18 +9,14 @@ try {
         $table = $req_arr["table"];
         $fields = $req_arr["fields"];
         $tableData = $req_arr["data"];
-        // $array = json_decode($tableData, true);
-        //$tableData = json_decode('[{"var1":"9","var2":"16","var3":"16"},{"var1":"8","var2":"15","var3":"15"}]');
         $sql_insert = " INSERT INTO " . $table . " (";
         $sql_update = " UPDATE " . $table . " set ";
         $temp_insert = "";
         $temp_update = "";
         $temp_insertcolums = "";
-        // $stmt = $sqli_con->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-        // $stmt->bind_param("sss", $firstname, $lastname, $email);
         $isFirst = true;
         $isPrimary = false;
-        foreach ($fields as $key => $value) {
+        foreach ($fields as $key) {
             if ($primaryColumn == $key)
                 $isPrimary = true;
             else
@@ -34,75 +30,49 @@ try {
                 $temp_insertcolums .= ",";
 
             if (!$isPrimary) {
-                // $temp_update .= $key . " = :" . $key;
-                $temp_update .= $key . " = ?";
-                $temp_insert .= "?";
-                $temp_insertcolums .= $key;
+                $temp_update .= $key . " = :" . $key;
             }
+            $temp_insert .= ":" . $key;
+            //$temp_update .= $key . " = ?";
+            //$temp_insert .= "?";
+            $temp_insertcolums .= $key;
+            //}
         }
         $sql_update .= $temp_update;
         $sql_insert .= $temp_insertcolums . ") VALUES (" . $temp_insert . ")";
-        $sql_update .= " WHERE " . $primaryColumn . " = ?";
-        //$sql_update .= " WHERE " . $primaryColumn . " = :" . $primaryColumn;
-        //  print $sql_update;
-        $stmt_insert = $sqli_con->prepare($sql_insert);
-        $stmt_update = $sqli_con->prepare($sql_update);
+        //$sql_update .= " WHERE " . $primaryColumn . " = ?";
+        $sql_update .= " WHERE " . $primaryColumn . " = :" . $primaryColumn;
+        //print $sql_update . " " . $sql_insert;
+        $stmt_insert = $pdo_con->prepare($sql_insert);
+        $stmt_update = $pdo_con->prepare($sql_update);
         $dataType = "";
         $isNew = false;
-        //$lpdoparam = array();
-//        $stmt = $pdo_con->prepare($stmt_update);
-//        $i = 0;
-//        foreach ($fields as $key => $value) {
-//            array_push($lpdoparam, $key);
-//            $stmt->bindParam(':firstname', $lpdoparam[$i]);
-//        }
-//        print_r($lpdoparam);
-//        foreach ($tableData as $t_key => $t_value) {
-//            $i = 0;
-//            foreach ($fields as $f_key => $f_value) {
-//                $lpdoparam[$i] = $t_value[$f_key];
-//            }
-//            print_r($lpdoparam);
-//            print_r($stmt);
-//            $stmt->execute();
-//        }
-        foreach ($tableData as $t_key => $t_value) {
-            $lparam = array();
-            if ($t_value[$primaryColumn] == "" || $t_value[$primaryColumn] == "0")
-                $isNew = true;
-            $dataType = "";
-            $myval = "";
-            foreach ($fields as $f_key => $f_value) {
-                if ($f_key == $primaryColumn) {
-                    continue;
-                }
-                if($myval !="")
-                    $myval .=",";
-                //print_r($t_value[$f_key]);
-                array_push($lparam, $t_value[$f_key]);
-                // print_r($f_key);
-                //print_r($t_value);
-                $dataType .= $f_value;
-            }
-            if ($isNew) {
-                //print_r($lparam);
-                //echo $dataType;
-                //$stmt_insert->bind_param($dataType, $lparam);
-                //$stmt_insert->execute();
-                // print "inserted";
-            } else {
-                $dataType .= "i";
-                array_push($lparam, $t_value[$primaryColumn]);
-                print_r($lparam);
-                print_r($dataType);
-//                print_r($stmt_update);
-                eval('$stmt_update->bind_param( ' . $dataType . ',' . $lparam . '); ');
-                $stmt_update->bind_param($dataType, $lparam);
-                $stmt_update->execute();
-                // print "updated";
-            }
+        $lpdoparam = array();
+        //$stmt = $pdo_con->prepare($sql_update);
+        $i = 0;
+        foreach ($fields as $key) {
+            array_push($lpdoparam, $key);
+            // if ($key != $primaryColumn)
+            $stmt_insert->bindParam(':' . $key, $lpdoparam[$i]);
+            $stmt_update->bindParam(':' . $key, $lpdoparam[$i]);
+            $i++;
         }
 
+        foreach ($tableData as $t_key => $t_value) {
+            $i = 0;
+            $isNew = false;
+            if ($t_value[$primaryColumn] == "" || $t_value[$primaryColumn] == "0") {
+                $isNew = true;
+            }
+            foreach ($fields as $f_key) {
+                $lpdoparam[$i] = $t_value[$f_key];
+                $i++;
+            }
+            if ($isNew)
+                $stmt_insert->execute();
+            else
+                $stmt_update->execute();
+        }
         $msg = "{msg:'SUCCESS'}";
     } else if ($querytype == "json") {
         $sql = $req_arr["query"];
@@ -121,6 +91,10 @@ try {
             $msg = "{msg:'SUCCESS'}";
         }
     }//query
+    else {
+        print "{msg:'Error',Error: 'No method Avaiable for give key'}";
+    }
+    print trim($msg);
 } catch (Exception $e) {
     //print_r($e->getMessage());
     print "{msg:\"Error\",Error: \"";
