@@ -11,26 +11,26 @@ if ($_POST) {
     foreach ($_POST as $key => $value) {
       if ($i == 0) {
         $field = " $key ";
-        $val = "'" . mysqli_real_escape_string($con, $value) . "'";
+        $val = "'" . mysqli_real_escape_string($sqli_con, $value) . "'";
       } else if (($key == "tbl")) {
         $tbl = $value;
       } else if (($key == "method")) {
         
       } else {
         $field.=",$key";
-        $val.=",'" . mysqli_real_escape_string($con, $value) . "' ";
+        $val.=",'" . mysqli_real_escape_string($sqli_con, $value) . "' ";
       }
       $i++;
     }
     $sql = "Insert into $tbl($field) values($val) ";
-    $resUser = $con->query($sql) or trigger_error('Error: ' . $con->error, E_USER_ERROR);
+    $resUser = $sqli_con->query($sql) or trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
 //echo "<br>" . $sql;                
     if ($resUser === false) {
-      trigger_error('Error: ' . $con->error, E_USER_ERROR);
+      trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     } else {
       $msg = "SAVED";
     }
-    /* $retrival = mysql_query($sql, $con) or exit(mysql_error($con));
+    /* $retrival = mysql_query($sql, $sqli_con) or exit(mysql_error($sqli_con));
       if ($retrival) {
       $msg = "SAVED";
       } else {
@@ -49,21 +49,21 @@ if ($_POST) {
       } else if ($ftbl == 1) {
         if ($whf > 0) {
           $whr.=" and ";
-        } $whr.= " " . $key . "='" . mysqli_real_escape_string($con, $value) . "' ";
+        } $whr.= " " . $key . "='" . mysqli_real_escape_string($sqli_con, $value) . "' ";
         $whf++;
       } else {
         if ($upf > 0) {
           $val.=" , ";
         }
-        $val.=" " . $key . "='" . mysqli_real_escape_string($con, $value) . "' ";
+        $val.=" " . $key . "='" . mysqli_real_escape_string($sqli_con, $value) . "' ";
         $upf++;
       }
     }
     $sql = "update $tbl set $val where $whr ";
 //echo "<br>" . $sql;
-    $resUser = $con->query($sql) or trigger_error('Error: ' . $con->error, E_USER_ERROR);
+    $resUser = $sqli_con->query($sql) or trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     if ($resUser === false) {
-      trigger_error('Error: ' . $con->error, E_USER_ERROR);
+      trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     } else {
       $msg = "UPDATED";
     }
@@ -84,7 +84,7 @@ if ($_POST) {
         }
         if ($whf > 0) {
           $whr.=" and ";
-        } $whr.= " " . $key . "='" . mysqli_real_escape_string($con, $value) . "' ";
+        } $whr.= " " . $key . "='" . mysqli_real_escape_string($sqli_con, $value) . "' ";
         $whf++;
       } else {
         if ($upf > 0) {
@@ -99,18 +99,18 @@ if ($_POST) {
     }
     $sql = "Select $val  from  $tbl $whr";
 //        echo $sql;
-    $resUser = $con->query($sql);
+    $resUser = $sqli_con->query($sql);
     if ($resUser === false) {
-      trigger_error('Error: ' . $con->error, E_USER_ERROR);
+      trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     } else {
       $msg = $resUser->num_rows;
     }
   }//count 
   else if ($querytype == "query") {
     $sql = $_POST['query'];
-    $resUser = $con->query($sql) or trigger_error('Error: ' . $con->error, E_USER_ERROR);
+    $resUser = $sqli_con->query($sql) or trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     if ($resUser === false) {
-      trigger_error('Error: ' . $con->error, E_USER_ERROR);
+      trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     } else {
       $msg = "SUCCESS";
     }
@@ -131,7 +131,7 @@ if ($_POST) {
         }
         if ($whf > 0) {
           $whr.=" and ";
-        } $whr.= " " . $key . "='" . mysqli_real_escape_string($con, $value) . "' ";
+        } $whr.= " " . $key . "='" . mysqli_real_escape_string($sqli_con, $value) . "' ";
         $whf++;
       } else {
         if ($upf > 0) {
@@ -143,9 +143,9 @@ if ($_POST) {
     }
     $sql = "Delete  From  $tbl $whr";
 //        echo $sql;
-    $resUser = $con->query($sql);
+    $resUser = $sqli_con->query($sql);
     if ($resUser === false) {
-      trigger_error('Error: ' . $con->error, E_USER_ERROR);
+      trigger_error('Error: ' . $sqli_con->error, E_USER_ERROR);
     } else {
       $msg = "Deleted";
     }
@@ -153,7 +153,7 @@ if ($_POST) {
   else if ($querytype == "json") {
     $encode = array();
     $sql = $_POST['query'];
-    $results = mysqli_query($con, $sql) or print mysqli_error($con);
+    $results = mysqli_query($sqli_con, $sql) or print mysqli_error($sqli_con);
     while ($rows = mysqli_fetch_assoc($results)) {
       $encode[] = $rows;
     }

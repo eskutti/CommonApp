@@ -5,22 +5,104 @@ try {
     $req_arr = $_POST['requestData']; //json_decode(,true);;
     $querytype = $req_arr["method"];
     if ($querytype == "saveData") {
-        $querytype = $req_arr["primaryColumn"];
+        $primaryColumn = $req_arr["primaryColumn"];
         $table = $req_arr["table"];
         $fields = $req_arr["fields"];
-        $datatype = $req_arr["datatype"];
-        print_r($req_arr);
-        $array = $jsondata;
-        $array = json_decode($jsondata, true);
-        $jsondata = json_decode('[{"var1":"9","var2":"16","var3":"16"},{"var1":"8","var2":"15","var3":"15"}]');
-        
-        foreach ($jsondata as $key => $jsons) { // This will search in the 2 jsons
-            foreach ($jsons as $key => $value) {
-                echo "\n" . $value; // This will show jsut the value f each key like "var1" will print 9
-                // And then goes print 16,16,8 ...
+        $tableData = $req_arr["data"];
+        // $array = json_decode($tableData, true);
+        //$tableData = json_decode('[{"var1":"9","var2":"16","var3":"16"},{"var1":"8","var2":"15","var3":"15"}]');
+        $sql_insert = " INSERT INTO " . $table . " (";
+        $sql_update = " UPDATE " . $table . " set ";
+        $temp_insert = "";
+        $temp_update = "";
+        $temp_insertcolums = "";
+        // $stmt = $sqli_con->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+        // $stmt->bind_param("sss", $firstname, $lastname, $email);
+        $isFirst = true;
+        $isPrimary = false;
+        foreach ($fields as $key => $value) {
+            if ($primaryColumn == $key)
+                $isPrimary = true;
+            else
+                $isPrimary = false;
+
+            if ($temp_update != "")
+                $temp_update .= ",";
+            if ($temp_insert != "")
+                $temp_insert .= ",";
+            if ($temp_insertcolums != "")
+                $temp_insertcolums .= ",";
+
+            if (!$isPrimary) {
+                // $temp_update .= $key . " = :" . $key;
+                $temp_update .= $key . " = ?";
+                $temp_insert .= "?";
+                $temp_insertcolums .= $key;
             }
         }
-        
+        $sql_update .= $temp_update;
+        $sql_insert .= $temp_insertcolums . ") VALUES (" . $temp_insert . ")";
+        $sql_update .= " WHERE " . $primaryColumn . " = ?";
+        //$sql_update .= " WHERE " . $primaryColumn . " = :" . $primaryColumn;
+        //  print $sql_update;
+        $stmt_insert = $sqli_con->prepare($sql_insert);
+        $stmt_update = $sqli_con->prepare($sql_update);
+        $dataType = "";
+        $isNew = false;
+        //$lpdoparam = array();
+//        $stmt = $pdo_con->prepare($stmt_update);
+//        $i = 0;
+//        foreach ($fields as $key => $value) {
+//            array_push($lpdoparam, $key);
+//            $stmt->bindParam(':firstname', $lpdoparam[$i]);
+//        }
+//        print_r($lpdoparam);
+//        foreach ($tableData as $t_key => $t_value) {
+//            $i = 0;
+//            foreach ($fields as $f_key => $f_value) {
+//                $lpdoparam[$i] = $t_value[$f_key];
+//            }
+//            print_r($lpdoparam);
+//            print_r($stmt);
+//            $stmt->execute();
+//        }
+        foreach ($tableData as $t_key => $t_value) {
+            $lparam = array();
+            if ($t_value[$primaryColumn] == "" || $t_value[$primaryColumn] == "0")
+                $isNew = true;
+            $dataType = "";
+            $myval = "";
+            foreach ($fields as $f_key => $f_value) {
+                if ($f_key == $primaryColumn) {
+                    continue;
+                }
+                if($myval !="")
+                    $myval .=",";
+                //print_r($t_value[$f_key]);
+                array_push($lparam, $t_value[$f_key]);
+                // print_r($f_key);
+                //print_r($t_value);
+                $dataType .= $f_value;
+            }
+            if ($isNew) {
+                //print_r($lparam);
+                //echo $dataType;
+                //$stmt_insert->bind_param($dataType, $lparam);
+                //$stmt_insert->execute();
+                // print "inserted";
+            } else {
+                $dataType .= "i";
+                array_push($lparam, $t_value[$primaryColumn]);
+                print_r($lparam);
+                print_r($dataType);
+//                print_r($stmt_update);
+                eval('$stmt_update->bind_param( ' . $dataType . ',' . $lparam . '); ');
+                $stmt_update->bind_param($dataType, $lparam);
+                $stmt_update->execute();
+                // print "updated";
+            }
+        }
+
         $msg = "{msg:'SUCCESS'}";
     } else if ($querytype == "json") {
         $sql = $req_arr["query"];
@@ -45,4 +127,10 @@ try {
     print $e->getMessage();
     print "\"}";
 }
+//i	 integer
+//d	 double
+//s	 string
+//b	corresponding variable is a blob and will be sent in packets
 ?>
+
+

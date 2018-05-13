@@ -93,7 +93,7 @@ input,select
 
 
 ::-webkit-scrollbar {
-    width: 10px; /* for vertical scrollbars */
+    width: 7px; /* for vertical scrollbars */
     height: 10px; /* for horizontal scrollbars */
     border-radius: 10px;
 }
@@ -230,4 +230,7 @@ body{margin:40px;}
 td > textarea.form-control {
     min-height: 34px !important;
    height:0 !important
+}
+body{
+    color:#fff!important;
 }

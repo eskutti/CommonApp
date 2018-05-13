@@ -17,24 +17,37 @@
                 $scope.getCategoryData();
             });
             $scope.addCategory = function () {
-                $scope.categoryData.push({});
+                $scope.categoryData.data.push({});
             }
             
             $scope.getCategoryData = function () {
                 var request = {};                
-                request.query = 'select * from link_category';
+                request.query = 'select category_key,category_name,category_code,category_icon,category_order,is_active from link_category';
                 request.method= 'json';
                 $scope.postRequest(request).then(function (res) {
-                    
                     if(res=="")
                         res="[]";
-                   $scope.categoryData=eval(res);
+                   
+                   $scope.categoryData={
+                       "fields":{
+                           category_key :"i",
+                           category_name:"s",
+                           category_code:"s",
+                           category_icon:"s",
+                           category_order:"i",
+                           is_active:"i"
+                       },
+                       table:"link_category",
+                       primaryColumn :"category_key",
+                       method:"saveData",
+                       data:eval(res)
+                   }
                 });
             }
 
-            $scope.savecategory = function(index){
-                var jsonstr=angular.toJson($scope.categoryData[index]);
-                //var jsonstr=angular.toJson($scope.categoryData[index]);
+            $scope.savecategory = function(){
+                var jsonstr=angular.toJson($scope.categoryData);
+                //var jsonstr=angular.toJson($scope.categoryData.data[index]);
              $scope.postRequest(JSON.parse(jsonstr)).then(function (res) {
                    $scope.result=res;
                 });   
@@ -62,7 +75,7 @@
                 reader.readAsDataURL(obj.files[0]);
                 reader.onload = function () {
                   //console.log(reader.result);
-                  $(obj_current).next().val(reader.result);
+                  $(obj_current).next().val(reader.result.replace('data:image/png;base64,', ''));
                 };
                 reader.onerror = function (error) {
                   console.log('Error: ', error);
@@ -79,7 +92,7 @@
     <title>All in One links</title>
 </head>
 <body ng-controller="allinonectrl"> 
-    <div style="color:#fff">{{result}}</div>
+
             <table class="table table-bordered col-md-12" >
                 <thead>
                     <tr>
@@ -88,7 +101,7 @@
                             <button type="button" title="Add" ng-click="addCategory()" class="btn btn-success btn-circle">
                             <i class="glyphicon glyphicon-plus"></i>
                             </button>
-                                <button type="button" title="Save" ng-click="addCategory()" class="btn btn-warning btn-circle">
+                                <button type="button" title="Save" ng-click="savecategory()" class="btn btn-warning btn-circle">
                             <i class="glyphicon glyphicon-floppy-disk"></i>
                             </button>
                         
@@ -105,8 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in categoryData" ng-init="row.isEdit=false;row.table='link_category';(row.category_key=='' || row.category_key==null)?row.method='insert':row.method='update'" >
-                        
+                    <tr ng-repeat="row in categoryData.data" ng-init="row.isEdit=false;row.table='link_category';(row.category_key=='' || row.category_key==null)?row.method='insert':row.method='update'" >
 
                         </div>
                         <td >
@@ -126,7 +138,7 @@
                         </td>
                         <td  >
                             <img style="float:left;width:10%" class="grid-img-data" src="data:image/png;base64,{{row.category_icon}}"  alt="Red dot" />
-                            <input style="float:left;width:30%" type="file" accept="image/x-png,image/gif,image/jpeg"  onchange="angular.element(this).scope().fileChoosed(this,1)" class="form-control width-25" ng-show="row.isEdit">
+                            <input style="float:left;width:30%" type="file" accept="image/png"  onchange="angular.element(this).scope().fileChoosed(this,1)" class="form-control width-25" ng-show="row.isEdit">
                             <textarea style="float:left;width:60%;" type="text" class="form-control " ng-model="row.category_icon" ng-show="row.isEdit"></textarea>
                         </td>
                         <td  >
@@ -137,7 +149,7 @@
                                 <i class="glyphicon glyphicon-pencil">
                                  </i>
                             </button>
-                            <button type="button" title="Add"  ng-click="row.isEdit=false; savecategory($index)" class="btn btn-danger btn-circle">
+                            <button type="button" title="Add"  ng-click="row.isEdit=false; savecategorySingle($index)" class="btn btn-danger btn-circle">
                                 <i class="glyphicon glyphicon-floppy-disk">
                                  </i>
                             </button>
@@ -149,7 +161,7 @@
 </body>
 </html>
 
-
+{{result}}
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
