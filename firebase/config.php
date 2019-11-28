@@ -2,5 +2,5 @@
 
 
 // Firebase API Key
-define('FIREBASE_API_KEY', 'AAAAKpXkxMI:APA91bHRYG_0ATfARHz8b2qFbz9rYyVo9DqJivT61ehyEGAU4JW9EgUw-AuiNSS5v16D6EzUlS6O4ISQB7H0L5nLq9EV6r1xvgQXuehiqN2n62lqg4oCwXWbzokOM8S4pBy3ON74OYwJ');
+define('FIREBASE_API_KEY', 'place your firebase api key');
 ?>
